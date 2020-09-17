@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+</head>
+<body>
+    <h1>{{ greeting }} {{ imya }}</h1>
+<table>
+<caption>Ваши уроки</caption>
+  <tr>
+    <th>№ п/п</th>
+    <th>Время начала</th>
+    <th>Название предмета</th>
+    <th>Тема урока</th>
+    <th>Преподаватель</th>
+    <th>Комментарий</th>
+    <th>Ссылка на урок</th>
+  </tr>
+    {% for urok in uroki %}
+  <tr>
+    <td>{{urok.datefield }}</td>
+    <td>{{urok.nomer_uroka }}</td>
+    <td>{{urok.vremya_nachala_uroka }}</td>
+    <td>{{urok.nomer_klassa }}</td>
+    <td>{{urok.nazvanie_predmeta }}</td>
+    <td>{{urok.prepodavatel }}</td>
+    <td>{{urok.tema_uroka }}</td>
+
+  </tr>
+    {% endfor %}
+
+</table>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>{{ greeting }}</h1>
+    <div>
+        <form>
+            <fieldset>
+                <legend>Ученик</legend>
+                <p><label for="name">E-mail <em>*</em></label><input type="email" id="email"></p>
+                <p><label for="email">Password</label><input type="password" id="password"></p>
+            </fieldset>
+            <p><input type="submit" value="Отправить" class="redirect"></p>
+            <button>Учитель</button>
+        </form>
+    </div>
+<script type="text/javascript">
+    const sbmt = document.querySelector('input.redirect');
+    const sbmt2 = document.querySelector('button');
+
+
+    function redirectStudent(event){
+        event.preventDefault();
+        document.location.href="./student";
+    }
+
+    function redirectUchitel(event){
+
+        event.preventDefault();
+        document.location.href="./uchitel";
+    }
+
+    sbmt.addEventListener('click', redirectStudent);
+    sbmt2.addEventListener('click', redirectUchitel);
+</script>
+</body>
+</html>
