@@ -3,18 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Uchitel</title>
-    <link rel="stylesheet" href="templates/style.css">
+    <style>
+       h2.dobUrok {
+            color: aqua;
+           background: darkviolet;
+           width: 180px;
+       }
+       form.nov_urok
+       {
+           display: block;
+       }
+
+  </style>
 </head>
 <body>
-    <h1>{{ greeting }}</h1>
+
+{% if user.is_authenticated %}
+    <a href ="logout">Выйти ({{ user.username }})</a>
+{% else %}
+    <a href ="register">Регистрация на сайте</a>
+    <a href ="login">Авторизация</a>
+{% endif %}
+
+
+    <h1>{{ greeting }} {{ uchitel_name }} !</h1>
 
     <h2 class="dobUrok">Добавить урок</h2>
-    <form action="add_urok" method = "post">
+    <form action="add_urok" method = "post" class="nov_urok">
         {% csrf_token %}
         {{ urokForm.as_p }}
         <input type = "submit" value="Submit">
     </form>
     <hr>
 
+
+    <table>
+        <caption>Ваши уроки</caption>
+          <tr>
+            <th>Дата</th>
+            <th>№ п/п</th>
+            <th>Время начала</th>
+            <th>Название предмета</th>
+            <th>Тема урока</th>
+            <th>Класс</th>
+            <th>Комментарий</th>
+            <th>Ссылка на урок</th>
+          </tr>
+            {% for urok in uroki %}
+          <tr>
+            <td>{{urok.date_field }}</td>
+            <td>{{urok.nomer_uroka }}</td>
+            <td>{{urok.vremya_nachala_uroka }}</td>
+            <td>{{urok.nazvanie_predmeta }}</td>
+            <td>{{urok.tema_uroka }}</td>
+            <td>{{urok.nomer_klassa }}</td>
+            <td>{{ urok.kommentaryi }}</td>
+            <td>{{ urok.ssylka_na_urok }}</td>
+          </tr>
+            {% endfor %}
+
+    </table>
+    <button>Изменить данные об уроке</button>
+    <p>{{ pID }}</p>
+
+    <script type="application/javascript">
+      const buttonToHide = document.querySelector("h2.dobUrok");
+      const formToHide = document.querySelector("form.nov_urok");
+      function toggleFormHide(){
+          if(formToHide.style.display == "none")
+          {
+              formToHide.style.display = "block";
+          }else{
+              formToHide.style.display = "none";
+          }
+      }
+
+      buttonToHide.addEventListener("click", toggleFormHide);
+
+    </script>
 </body>
 </html>

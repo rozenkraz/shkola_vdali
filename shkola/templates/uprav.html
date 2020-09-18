@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% if user.is_authenticated %}
+    <a href ="logout">Выйти ({{ user.username }})</a>
+{% else %}
+    <a href ="register">Регистрация на сайте</a>
+    <a href ="login">Авторизация</a>
+{% endif %}
+
+
+<table>
+        <caption>Все уроки школы</caption>
+          <tr>
+            <th>Дата</th>
+            <th>№ урока п/п</th>
+            <th>Класс</th>
+            <th>Преподаватель</th>
+            <th>Время начала</th>
+            <th>Название предмета</th>
+            <th>Тема урока</th>
+            <th>Класс</th>
+            <th>Комментарий</th>
+            <th>Ссылка на урок</th>
+          </tr>
+            {% for urok in uroki %}
+          <tr>
+            <td>{{urok.date_field }}</td>
+            <td>{{urok.nomer_uroka }}</td>
+            <td>{{urok.nomer_klassa }}</td>
+            <td>{{urok.prepodavatel }}</td>
+            <td>{{urok.vremya_nachala_uroka }}</td>
+            <td>{{urok.nazvanie_predmeta }}</td>
+            <td>{{urok.tema_uroka }}</td>
+            <td>{{urok.nomer_klassa }}</td>
+            <td>{{ urok.kommentaryi }}</td>
+            <td>{{ urok.ssylka_na_urok }}</td>
+          </tr>
+            {% endfor %}
+
+    </table>
+</body>
+</html>

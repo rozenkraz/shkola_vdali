@@ -4,9 +4,13 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.start),
+    url(r'^$', views.MainView.as_view()),
     url(r'student$', views.student),
     url(r'uchitel$', views.uchitel),
     url(r'add_urok$', views.add_urok),
+    url(r'uprav$', views.uprav),
+    url(r'register$', views.RegisterFormView.as_view()),
+    url(r'login$', views.LoginFormView.as_view()),
+    url(r'logout$', views.LogoutView.as_view()),
 
 ]
